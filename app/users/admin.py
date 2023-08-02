@@ -11,21 +11,18 @@ admin.site.unregister(Group)
 class CustomUserAdmin(UserAdmin):
     list_display = (
         "email",
-        "first_name",
-        "last_name",
+        "username",
         "is_active",
         "is_superuser",
         "last_login",
     )
     ordering = ("id",)
-    fields = (
-        "first_name",
-        "last_name",
-        "is_active",
-    )
+    # fields = (
+    #     "is_active",
+    # )
     list_filter = (
         "is_active",
         "is_superuser",
     )
-    filter_horizontal = ()
     fieldsets = None
+    filter_horizontal = []

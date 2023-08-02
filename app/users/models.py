@@ -8,11 +8,10 @@ from users.managers.user_manager import UserManager
 class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
-    email = models.EmailField("email", unique=True)
-    first_name = models.CharField("name", max_length=30, blank=True)
-    last_name = models.CharField("surname", max_length=30, blank=True)
-    date_joined = models.DateTimeField("registered", auto_now_add=True)
-    is_active = models.BooleanField("is_active", default=True)
+    email = models.EmailField("Email", unique=True)
+    username = models.CharField("Username", max_length=50)
+    date_joined = models.DateTimeField("Registered", auto_now_add=True)
+    is_active = models.BooleanField("Is_active", default=True)
     groups = None
 
     USERNAME_FIELD = "email"
@@ -21,6 +20,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_superuser
+
+    def __str__(self):
+        return self.username
 
     class Meta:
         verbose_name = "User"
